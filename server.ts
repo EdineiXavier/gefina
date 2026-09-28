@@ -10,7 +10,6 @@ createServer(function(req, res) {
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ status: 'ok' }));
-  console.log('Knocked on the door!');
 
 }).listen(3000);
 
