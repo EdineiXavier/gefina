@@ -66,15 +66,17 @@ app.get('/api/invoices', function (req, res) {
 
 
 app.get('/api/invoices/:id', function (req, res) {
-  const id = Number(req.params.id);
-  const invoice = invoices.find((f) => f.id === id);
+  const id = +req.params.id;
 
-  if (!invoice) {
-    res.status(404).json({ message: 'Fatura não encontrada' });
-    return;
+  for(let i = 0; i < invoices.length; i++) {
+    if(invoices[i].id === id) {
+      res.status(200).json(invoices[i]);
+      return;
+    }
+
+    res.status(404).json({ error: { message: 'Fatura não encontrada'}});
   }
 
-  res.status(200).json(invoice);
 });
 
 
@@ -88,9 +90,11 @@ app.listen(3000, function() {
 
 
 
-
-
-
+// const request = {
+//   params: {
+//     id: '1'
+//   }
+// }
 
 
 
