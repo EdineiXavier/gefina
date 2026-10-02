@@ -81,24 +81,24 @@
 
     </script>
 
-    <script>
-        const tbody = document.querySelector('tbody');
+    <!-- <script>
+        // const tbody = document.querySelector('tbody');
 
-        for (let i = 0; i < invoices.length; i++) {
-            const invoice = invoices[i];
-            const row = document.createElement('tr');
+        // for (let i = 0; i < invoices.length; i++) {
+        //     const invoice = invoices[i];
+        //     const row = document.createElement('tr');
 
-            row.innerHTML =
-                '<td>' + invoice.customer.name + '</td>' +
-                '<td>R$ ' + (invoice.amount).toFixed(2) + '</td>' +
-                '<td>' + invoice.issueDate + '</td>' +
-                '<td>' + invoice.dueDate + '</td>' +
-                '<td>' + translate[invoice.status] + '</td>';
+        //     row.innerHTML =
+        //         '<td>' + invoice.customer.name + '</td>' +
+        //         '<td>R$ ' + (invoice.amount).toFixed(2) + '</td>' +
+        //         '<td>' + invoice.issueDate + '</td>' +
+        //         '<td>' + invoice.dueDate + '</td>' +
+        //         '<td>' + translate[invoice.status] + '</td>';
 
-            tbody.appendChild(row);
-        }
+        //     tbody.appendChild(row);
+        // }
 
-    </script>
+    </script> -->
 </body>
 
 </html>
