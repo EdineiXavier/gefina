@@ -4,28 +4,28 @@ import invoicesrouter from './invoice.route.ts';
 const app = express();
 // const porta = 3000;
 
-// app.use(express.json()); 
+// app.use(express.json());
 
-app.use(function (req, res, next) { // middleware que pega todas as requisições
-  console.log(req.method + ' ' + req.url);
+app.use((req, _res, next) => {
+  // middleware que pega todas as requisições
+  console.log(`${req.method} ${req.url}`);
   next();
 });
 
-app.get('/api/health', function (req, res) {
-  res.status(200).json({ status: 'ok'})
+app.get('/api/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
 
 app.use('/api/invoices', invoicesrouter);
 
-app.use(function (req, res) { // recebe todas as requisições que não foram tratadas
+app.use((_req, res) => {
+  // recebe todas as requisições que não foram tratadas
   res.status(404).json({ message: 'Recurso não encontrado' });
 });
 
-app.listen(3000, function() {
+app.listen(3000, () => {
   console.log(`Servidor rodando em http://localhost:3000`);
 });
-
-
 
 // const request = {
 //   params: {
@@ -33,11 +33,7 @@ app.listen(3000, function() {
 //   }
 // }
 
-
-
-
 // const volta = req.parse()
-
 
 // import { createServer } from 'node:http';
 
@@ -63,12 +59,6 @@ app.listen(3000, function() {
 // servidor.listen(porta, () => {
 //   console.log(`Servidor rodando em http://localhost:${porta}`);
 // });
-
-
-
-
-
-
 
 // export function greet(name: string){ // CommandJS
 //   console.log('Hello ' + name + '!');
