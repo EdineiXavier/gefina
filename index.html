@@ -8,20 +8,7 @@
 </head>
 
 <body>
-    <!-- <table>
-        <thead>
-            <tr>
-                <td>Cliente</td>
-                <td>Valor</td>
-                <td>Data de Emissão</td>
-                <td>Data de Vencimento</td>
-                <td>Situação</td>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table> -->
-
+    <h1>Faturas</h1>
     <div></div>
 
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -29,54 +16,73 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type='text/babel'>
-        const root = document.querySelector('div');
+            const root = document.querySelector('div');
 
-        const title = <h1>ReactCourse</h1>
-        const paragraph = <p>Welcome to the complete React Course</p>
+            function App(props) {
+                const invoices = [
+                {
+                    id: 1,
+                    amount: 125000,
+                    status: 'pending',
+                    issueDate: '2026-06-01',
+                    dueDate: '2026-06-15',
+                    customer: { id: 1, name: 'Construtora Meridiano', email: 'contato@meridiano.com.br' },
+                },
+                {
+                    id: 2,
+                    amount: 348000,
+                    status: 'paid',
+                    issueDate: '2026-05-12',
+                    dueDate: '2026-06-11',
+                    customer: { id: 1, name: 'Construtora Meridiano', email: 'contato@meridiano.com.br' },
+                },
+                {
+                    id: 3,
+                    amount: 96500,
+                    status: 'pending',
+                    issueDate: '2026-06-20',
+                    dueDate: '2026-07-20',
+                    customer: { id: 2, name: 'Gráfica Aurora', email: 'contato@graficaaurora.com.br' },
+                },
+            ];
 
-        ReactDOM.createRoot(root).render(
-            <>
-                {title}
-                {paragraph}
+            const translate = {
+                pending: 'Pendente',
+                paid: 'Pago'
+            }
+
+            return <>
+                <table border = "1px">
+                    <thead>
+                        <tr>
+                            <td>Cliente</td>
+                            <td>Valor</td>
+                            <td>Data de Emissão</td>
+                            <td>Data de Vencimento</td>
+                            <td>Situação</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {invoices.map(function(invoice){
+                            return <tr key = {invoice.id}>
+                                <td>{invoice.customer.name}</td>
+                                <td>{invoice.amount.toFixed(2)}</td>
+                                <td>{invoice.issueDate}</td>
+                                <td>{invoice.dueDate}</td>
+                                <td>{translate[invoice.status]}</td>
+                            </tr>;
+                        })}
+                    </tbody>
+                </table>
             </>
-        );
+        }
+
+        ReactDOM.createRoot(root).render(<App/>);
 
     </script>
 
-    <!-- <script>
-        const invoices = [
-            {
-                id: 1,
-                amount: 125000,
-                status: 'pending',
-                issueDate: '2026-06-01',
-                dueDate: '2026-06-15',
-                customer: { id: 1, name: 'Construtora Meridiano', email: 'contato@meridiano.com.br' },
-            },
-            {
-                id: 2,
-                amount: 348000,
-                status: 'paid',
-                issueDate: '2026-05-12',
-                dueDate: '2026-06-11',
-                customer: { id: 1, name: 'Construtora Meridiano', email: 'contato@meridiano.com.br' },
-            },
-            {
-                id: 3,
-                amount: 96500,
-                status: 'pending',
-                issueDate: '2026-06-20',
-                dueDate: '2026-07-20',
-                customer: { id: 2, name: 'Gráfica Aurora', email: 'contato@graficaaurora.com.br' },
-            },
-        ];
-
+    <script>
         const tbody = document.querySelector('tbody');
-
-        const translate = {
-            pending: 'Pendente',
-            paid: 'Pago'
-        }
 
         for (let i = 0; i < invoices.length; i++) {
             const invoice = invoices[i];
@@ -92,7 +98,7 @@
             tbody.appendChild(row);
         }
 
-    </script> -->
+    </script>
 </body>
 
 </html>
