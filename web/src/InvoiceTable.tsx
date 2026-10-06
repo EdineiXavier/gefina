@@ -8,16 +8,18 @@ interface InvoiceTableProps {
 export default function InvoiceTable(props: InvoiceTableProps) {
     return <table>
         <thead>
-            <td>Cliente</td>
-            <td>Valor</td>
-            <td>Data de Emissão</td>
-            <td>Data de Vencimento</td>
-            <td>Situação</td>
+            <tr>
+                <td>Cliente</td>
+                <td>Valor</td>
+                <td>Data de Emissão</td>
+                <td>Data de Vencimento</td>
+                <td>Situação</td>
+            </tr>
         </thead>
         <tbody>
             {props.invoices.map(invoice => (
                 <InvoiceRow
-                    key={invoice.id} 
+                    key={invoice.id}
                     invoice={invoice} />
             ))}
         </tbody>
