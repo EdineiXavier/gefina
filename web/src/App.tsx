@@ -45,6 +45,7 @@ export default function App() {
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [seconds, setSeconds] = useState(3)
 
   useEffect(() => {
     async function getInvoices() {
@@ -67,8 +68,24 @@ export default function App() {
     getInvoices()
   }, [])
 
-  if (loading) return <p>Carregando faturas</p>
+  useEffect(() => {
+  if (!loading) return
+
+  const timer = setInterval(() => {
+    setSeconds(s => (s > 0 ? s - 1 : 0))
+  }, 1000)
+
+  return () => clearInterval(timer)
+  }, [loading])
+
+  if (loading) {
+    return <p>Seus dados estão carregando em {seconds}...</p>
+  }
+  // if (loading) return <p>Carregando faturas...</p>
   if(error) return <p>{error}</p>
 
   return <InvoiceTable invoices={invoices} />
 }
+
+
+// vite build: cria o processo de building. O navegador nao entende ts. O build gera os arquivos que sao rodados dentro do servidor online

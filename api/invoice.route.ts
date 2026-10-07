@@ -10,7 +10,7 @@ const router = Router();
 router.get('/', (_req, res) => {
   setTimeout(() => {
     res.status(200).json(invoices);
-  }, 5000);
+  }, 8000);
 });
 
 router.get('/:id', (req, res) => {
