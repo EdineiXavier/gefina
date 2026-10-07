@@ -1,8 +1,11 @@
 import express from 'express';
+import path from 'node:path'
 import invoicesrouter from './invoice.route.ts';
 
 const app = express();
 // const porta = 3000;
+
+const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
 
 // app.use(express.json());
 
@@ -17,6 +20,8 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/invoices', invoicesrouter);
+
+app.use(express.static(dist))
 
 app.use((_req, res) => {
   // recebe todas as requisições que não foram tratadas

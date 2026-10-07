@@ -81,6 +81,8 @@ export default function App() {
   if (loading) {
     return <p>Seus dados estão carregando em {seconds}...</p>
   }
+
+  
   // if (loading) return <p>Carregando faturas...</p>
   if(error) return <p>{error}</p>
 
