@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'node:path'
 import invoicesrouter from './invoice.route.ts';
 import pool from './database.ts'
+import dashboard from './dashboard.route.ts' // como é default pode nomear o router como quiser
 
 const app = express();
 // const porta = 3000;
@@ -33,6 +34,7 @@ app.get('/api/health', async (_req, res) => {
   }
 });
 
+app.use('/api/dashboard', dashboard);
 app.use('/api/invoices', invoicesrouter);
 
 app.use(express.static(dist))
