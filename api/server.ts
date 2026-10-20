@@ -39,6 +39,15 @@ app.use('/api/invoices', invoicesrouter);
 
 app.use(express.static(dist))
 
+app.use((req, res, next) => {
+  if (req.url.startsWith('/api')){
+    next();
+    return;
+  }
+
+  res.sendFile(path.join(dist, 'index.html'))
+})
+
 app.use((_req, res) => {
   // recebe todas as requisições que não foram tratadas
   res.status(404).json({ message: 'Recurso não encontrado' });
