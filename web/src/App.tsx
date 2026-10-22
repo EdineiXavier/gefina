@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router'
 
 export default function App() {
     return <BrowserRouter>
-        <aside>
-            <header>Gefina</header>
-            <nav>
+        <aside className='sidebar'>
+            <header className='branch'>Gefina</header>
+            <nav className='menu'>
                 <ul>
                     <li>
                         <Link to='/'>Painel Inicial</Link>
@@ -18,7 +18,7 @@ export default function App() {
             </nav>
         </aside>
 
-        <main>
+        <main className='content'>
             <Routes>
                 <Route path='/' element={<DashboardPage />} />
                 <Route path='/faturas' element={<InvoicePage />} />
