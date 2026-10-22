@@ -53,7 +53,7 @@ export default function DashboardPage() {
       try {
         const response = await fetch('/api/dashboard');
 
-        if(!response.ok){
+        if (!response.ok) {
           setError('Não foi possível carregar faturas');
           setLoading(false);
           return;
@@ -66,39 +66,41 @@ export default function DashboardPage() {
       }
 
       setLoading(false)
-    } 
+    }
 
     getDashboard()
   }, [])
 
   if (loading) return <p>Carregando painel inicial...</p>
-  
+
   // if (loading) return <p>Carregando faturas...</p>
-  if(error || dashboard === null) return <p>{error}</p>
+  if (error || dashboard === null) return <p>{error}</p>
 
   return <>
     <h1>Painel Inicial</h1>
 
-    <div>
-        <SummaryCard label='Total recebido:' value={formatCurrency(dashboard.totals.paid)} />
-        <SummaryCard label='Total pendente:' value={formatCurrency(dashboard.totals.pending)} />
-        <SummaryCard label='Faturas:' value={String(dashboard.totals.invoiceCount)} />
-        <SummaryCard label='Clientes:' value={String(dashboard.totals.customerCount)} />
-    </div> 
+    <div className='summary-cards'>
+      <SummaryCard label='Total recebido:' value={formatCurrency(dashboard.totals.paid)} />
+      <SummaryCard label='Total pendente:' value={formatCurrency(dashboard.totals.pending)} />
+      <SummaryCard label='Faturas:' value={String(dashboard.totals.invoiceCount)} />
+      <SummaryCard label='Clientes:' value={String(dashboard.totals.customerCount)} />
+    </div>
 
-    <InvoiceSummaryTable
+    <div className='summary-tables'>
+      <InvoiceSummaryTable
         title='Faturas recentes'
         dateLabel='Emissão'
         invoices={dashboard.recentInvoices}
         date={(invoice) => invoice.issueDate}
-    />
+      />
 
-    <InvoiceSummaryTable
+      <InvoiceSummaryTable
         title='Faturas atrasadas'
         dateLabel='Vencimento'
         invoices={dashboard.overdueInvoices}
         date={(invoice) => invoice.dueDate}
-    />
+      />
+    </div>
   </>
 }
 
