@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router'
 export default function App() {
     return <BrowserRouter>
         <aside className='sidebar'>
-            <header className='branch'>Gefina</header>
+            <header className='brand'>Gefina</header>
             <nav className='menu'>
                 <ul>
                     <li>
