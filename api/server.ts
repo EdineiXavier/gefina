@@ -7,9 +7,9 @@ import dashboard from './dashboard.route.ts' // como é default pode nomear o ro
 const app = express();
 // const porta = 3000;
 
-const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
+app.use(express.json());
 
-// app.use(express.json());
+const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
 
 app.use((req, _res, next) => {
   // middleware que pega todas as requisições
