@@ -168,8 +168,7 @@ th, td {
 }
 
 .numeric-date {
-    text-align: center;
-}
+    text-align: center;}
 
 .situation-paid {
     color: var(--color-paid)
