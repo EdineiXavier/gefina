@@ -3,6 +3,7 @@ import path from 'node:path'
 import invoicesrouter from './invoice.route.ts';
 import pool from './database.ts'
 import dashboard from './dashboard.route.ts' // como é default pode nomear o router como quiser
+import handleError from './error.middleware.ts';
 
 const app = express();
 // const porta = 3000;
@@ -52,6 +53,8 @@ app.use((_req, res) => {
   // recebe todas as requisições que não foram tratadas
   res.status(404).json({ message: 'Recurso não encontrado' });
 });
+
+app.use(handleError);
 
 app.listen(Number(process.env.PORT) || 3000)
 

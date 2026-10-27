@@ -8,116 +8,63 @@ const router = Router();
 // });
 
 router.get('/', async (_req, res) => {
-  try {
-    const invoices = await findAllInvoices();
+  const invoices = await findAllInvoices();
 
-    res.status(200).json(invoices);
-    // setTimeout(() => {
-    //   res.status(200).json(invoices);
-    // }, 8000);
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      error: {
-        status: 500,
-        message: 'Não foi possível carregar as faturas.'
-      }
-    })
-  }
+  res.status(200).json(invoices);
 });
 
 router.get('/:id', async (req, res) => {
-  try {
-    const id = Number(req.params.id);
+  const id = Number(req.params.id);
 
-    const invoice = await findInvoiceById(id);
+  const invoice = await findInvoiceById(id);
 
-    if (!invoice) res.status(404).json({
-      error: {
-        status: 404,
-        message: 'Fatura não encontrada'
-      }
-    })
+  if (!invoice) res.status(404).json({
+    error: {
+      status: 404,
+      message: 'Fatura não encontrada'
+    }
+  })
 
-    res.status(200).json(invoice);
-
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      error: {
-        status: 500,
-        message: 'Não foi possível carregar as faturas.'
-      }
-    })
-  };
+  res.status(200).json(invoice);
 })
 
 router.post('/', async (req, res) => {
-  try {
-    const invoice = await insertInvoice(req.body);
+  const invoice = await insertInvoice(req.body);
 
-    if (!invoice) res.status(404).json({
-      error: {
-        status: 404,
-        message: 'Fatura não encontrada'
-      }
-    })
+  if (!invoice) res.status(404).json({
+    error: {
+      status: 404,
+      message: 'Fatura não encontrada'
+    }
+  })
 
-    res.status(201).json(invoice)
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({ error: { 
-      status: 500, 
-      message: 'Não foi possível inserir a fatura.' 
-    }});
-  }
+  res.status(201).json(invoice)
 })
 
 router.put('/:id', async (req, res) => {
-  try {
-    const invoice = await modifyInvoice(Number(req.params.id), req.body);
+  const invoice = await modifyInvoice(Number(req.params.id), req.body);
 
-    if (!invoice) res.status(404).json({
-      error: {
-        status: 404,
-        message: 'Fatura não encontrada'
-      }
-    })
+  if (!invoice) res.status(404).json({
+    error: {
+      status: 404,
+      message: 'Fatura não encontrada'
+    }
+  })
 
-    res.status(200).json(invoice)
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({ error: { 
-      status: 500, 
-      message: 'Não foi possível modificar a fatura.' 
-    }});
-  }
+  res.status(200).json(invoice)
 })
 
 router.delete('/:id', async (req, res) => {
-  try {
-    const deleted = await removeInvoice(Number(req.params.id))
+  const deleted = await removeInvoice(Number(req.params.id))
 
-    if (!deleted) res.status(404).json({
-      error: {
-        status: 404,
-        message: 'Fatura não encontrada'
-      }
-    })
+  if (!deleted) res.status(404).json({
+    error: {
+      status: 404,
+      message: 'Fatura não encontrada'
+    }
+  })
 
-    res.status(204).end()
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({ error: { 
-      status: 500, 
-      message: 'Não foi possível deletar a fatura.' 
-    }});
-  }
+  res.status(204).end()
 })
 
 export default router;
