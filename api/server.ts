@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'node:path'
+import fs from 'node:fs'
 import invoicesrouter from './invoice.route.ts';
 import pool from './database.ts'
 import dashboard from './dashboard.route.ts' // como é default pode nomear o router como quiser
@@ -41,7 +42,7 @@ app.use('/api/invoices', invoicesrouter);
 app.use(express.static(dist))
 
 app.use((req, res, next) => {
-  if (req.url.startsWith('/api')){
+  if (req.url.startsWith('/api') || !fs.existsSync(path.join(dist, 'index.html'))){
     next();
     return;
   }
@@ -50,8 +51,10 @@ app.use((req, res, next) => {
 })
 
 app.use((_req, res) => {
-  // recebe todas as requisições que não foram tratadas
-  res.status(404).json({ message: 'Recurso não encontrado' });
+  res.status(404).json({ error: {
+    status: 404,
+    message: 'Recurso não encontraado'
+  }})
 });
 
 app.use(handleError);
