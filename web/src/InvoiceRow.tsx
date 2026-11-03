@@ -15,7 +15,7 @@ export default function InvoiceRow(props: InvoiceRowProps){
         <td className={situationClass(props.invoice.situation)}>{situationLabel(props.invoice.situation)}</td>
         <td className='td-button'>
             <button
-                className='button-secundary'
+                className='button-secondary'
                 type='button'
                 onClick={() => props.edit(props.invoice)}
             >Alterar</button>
