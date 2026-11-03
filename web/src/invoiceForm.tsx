@@ -52,6 +52,7 @@ export default function InvoiceForm(props: InvoiceFormProps) {
                 type='number'
                 step='0.01'
                 min='0.01'
+                value={amount}
                 onChange={(event) => setAmount(event.target.value)}
                 required
             />
@@ -80,6 +81,7 @@ export default function InvoiceForm(props: InvoiceFormProps) {
                     id='dueDate'
                     type='date' 
                     value={dueDate}
+                    min={issueDate}
                     onChange = {(event) => setDueDate(event.target.value)}
                     required
                 />

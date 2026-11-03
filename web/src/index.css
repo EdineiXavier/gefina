@@ -164,6 +164,10 @@ th, td {
     padding: var(--space-3)
 }
 
+.td-button{
+    text-align: center;
+}
+
 .content {
     margin-left: var(--sidebar-width);
     padding: var(--space-8);
@@ -172,6 +176,7 @@ th, td {
 .numeric {
     font-variant-numeric: tabular-nums;
 }
+
 
 .numeric-date {
     text-align: center;}
@@ -201,6 +206,7 @@ th, td {
 
 .invoice-modal {
     width: 720px;
+    margin: auto;
     padding: var(--space-6);
     background-color: var(--color-surface);
     color: var(--color-text);
