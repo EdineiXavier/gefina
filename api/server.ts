@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import invoicesrouter from './invoice.route.ts';
 import pool from './database.ts'
 import dashboard from './dashboard.route.ts' // como é default pode nomear o router como quiser
+import customers from './customer.route.ts' // como é default pode nomear o router como quiser
 import handleError from './error.middleware.ts';
 
 const app = express();
@@ -37,6 +38,7 @@ app.get('/api/health', async (_req, res) => {
 });
 
 app.use('/api/dashboard', dashboard);
+app.use('/api/customers', customers)
 app.use('/api/invoices', invoicesrouter);
 
 app.use(express.static(dist))
