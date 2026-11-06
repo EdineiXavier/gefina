@@ -61,8 +61,6 @@ app.use((_req, res) => {
 
 app.use(handleError);
 
-app.listen(Number(process.env.PORT) || 3000)
-
 export default app;
 
 // const request = {
