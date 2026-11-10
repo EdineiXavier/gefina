@@ -176,9 +176,9 @@ describe(
                 expect(response.body.error.fields.amount).toBeDefined();
             }
 
-
         )
 
-
     }
+
+    
 )
