@@ -1,6 +1,10 @@
-import prisma from './prisma.ts';
-import { type Invoice, findRecentInvoices, findOverdueInvoices } from './invoice.service.ts'
 import type { InvoiceStatus } from './invoice.schema.ts';
+import {
+  findOverdueInvoices,
+  findRecentInvoices,
+  type Invoice,
+} from './invoice.service.ts';
+import prisma from './prisma.ts';
 
 interface Dashboard {
   totals: {
@@ -8,21 +12,21 @@ interface Dashboard {
     pending: number;
     invoiceCount: number;
     customerCount: number;
-  }
+  };
   recentInvoices: Invoice[];
   overdueInvoices: Invoice[];
 }
 
-async function sumAmountByStatus(status: InvoiceStatus): Promise<number> {
+async function sumAmountByStatus(
+  status: InvoiceStatus,
+): Promise<number> {
   const sum = await prisma.invoice.aggregate({
     where: { status },
-    _sum: { amount: true }
+    _sum: { amount: true },
   });
 
-  return !sum._sum.amount ? 0 : sum._sum.amount
+  return !sum._sum.amount ? 0 : sum._sum.amount;
 }
-
-
 
 export default async function findDashboard(): Promise<Dashboard> {
   const [
@@ -31,14 +35,14 @@ export default async function findDashboard(): Promise<Dashboard> {
     invoiceCount,
     customerCount,
     recentInvoices,
-    overdueInvoices
+    overdueInvoices,
   ] = await Promise.all([
     sumAmountByStatus('paid'),
     sumAmountByStatus('pending'),
     prisma.invoice.count(),
     prisma.customer.count(),
     findRecentInvoices(),
-    findOverdueInvoices()
+    findOverdueInvoices(),
   ]);
 
   return {
@@ -46,12 +50,11 @@ export default async function findDashboard(): Promise<Dashboard> {
       paid,
       pending,
       invoiceCount,
-      customerCount
+      customerCount,
     },
     recentInvoices,
-    overdueInvoices
+    overdueInvoices,
   };
 }
-
 
 // SELECT COALESCE(SUM(amount), 0)::int AS total FROM invoices WHERE status = 'pending'

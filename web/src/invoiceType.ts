@@ -1,5 +1,5 @@
 export type InvoiceStatus = 'pending' | 'paid'; // "atrasado vai ser um dado derivado da data atual"
-export type InvoiceSituation = 'paid' | 'pending' | 'overdue'
+export type InvoiceSituation = 'paid' | 'pending' | 'overdue';
 
 interface Customer {
   id: number;
@@ -26,14 +26,14 @@ export interface InvoiceInput {
 }
 
 export interface InvoiceFieldErrors {
-    customerId?: string;
-    amount?: string;
-    status?: string;
-    issueDate?: string;
-    dueDate?: string;
+  customerId?: string;
+  amount?: string;
+  status?: string;
+  issueDate?: string;
+  dueDate?: string;
 }
 
 export interface ApiFailure {
   message: string;
-  fields: InvoiceFieldErrors
-} 
+  fields: InvoiceFieldErrors;
+}
