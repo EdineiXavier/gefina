@@ -1,11 +1,11 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import express from 'express';
-import path from 'node:path'
-import fs from 'node:fs'
-import invoicesrouter from './invoice.route.ts';
-import pool from './database.ts'
-import dashboard from './dashboard.route.ts' // como é default pode nomear o router como quiser
-import customers from './customer.route.ts' // como é default pode nomear o router como quiser
+import customers from './customer.route.ts'; // como é default pode nomear o router como quiser
+import dashboard from './dashboard.route.ts'; // como é default pode nomear o router como quiser
 import handleError from './error.middleware.ts';
+import invoicesrouter from './invoice.route.ts';
+import prisma from './prisma.ts';
 
 const app = express();
 // const porta = 3000;
@@ -22,41 +22,46 @@ app.use((req, _res, next) => {
 
 app.get('/api/health', async (_req, res) => {
   try {
-    const connect = await pool.query('SELECT datname FROM pg_database WHERE oid = 5;');
-    res.status(200).json({ 
+    await prisma.$queryRaw`SELECT 1;`;
+    res.status(200).json({
       status: 'Server is running',
-      database: connect.rows[0].datname
+      database: 'Database available',
     });
   } catch (error) {
     console.error(error);
 
     res.status(500).json({
       status: 'Server is running',
-      message: 'unavaliable'
-    })
+      message: 'Database unavaliable',
+    });
   }
 });
 
 app.use('/api/dashboard', dashboard);
-app.use('/api/customers', customers)
+app.use('/api/customers', customers);
 app.use('/api/invoices', invoicesrouter);
 
-app.use(express.static(dist))
+app.use(express.static(dist));
 
 app.use((req, res, next) => {
-  if (req.url.startsWith('/api') || !fs.existsSync(path.join(dist, 'index.html'))){
+  if (
+    req.url.startsWith('/api') ||
+    !fs.existsSync(path.join(dist, 'index.html'))
+  ) {
     next();
     return;
   }
 
-  res.sendFile(path.join(dist, 'index.html'))
-})
+  res.sendFile(path.join(dist, 'index.html'));
+});
 
 app.use((_req, res) => {
-  res.status(404).json({ error: {
-    status: 404,
-    message: 'Recurso não encontraado'
-  }})
+  res.status(404).json({
+    error: {
+      status: 404,
+      message: 'Recurso não encontraado',
+    },
+  });
 });
 
 app.use(handleError);

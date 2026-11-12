@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import type { Dashboard } from './dashboardType.ts'
-import SummaryCard from './SummaryCard.tsx'
-import InvoiceSummaryTable from "./InvoiceSummaryTable.tsx";
-import { formatCurrency } from "./utils.ts";
+import { useEffect, useState } from 'react';
+import type { Dashboard } from './dashboardType.ts';
+import InvoiceSummaryTable from './InvoiceSummaryTable.tsx';
+import SummaryCard from './SummaryCard.tsx';
+import { formatCurrency } from './utils.ts';
 
 // const invoices: Invoice[] = [
 //   {
@@ -44,9 +44,9 @@ import { formatCurrency } from "./utils.ts";
 // ];
 
 export default function DashboardPage() {
-  const [dashboard, setDashboard] = useState<null | Dashboard>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [dashboard, setDashboard] = useState<null | Dashboard>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getDashboard() {
@@ -59,50 +59,63 @@ export default function DashboardPage() {
           return;
         }
 
-        const datas = await response.json()
-        setDashboard(datas)
+        const datas = await response.json();
+        setDashboard(datas);
       } catch {
-        setError('Não foi possivel carregar faturas')
+        setError('Não foi possivel carregar faturas');
       }
 
-      setLoading(false)
+      setLoading(false);
     }
 
-    getDashboard()
-  }, [])
+    getDashboard();
+  }, []);
 
-  if (loading) return <p>Carregando painel inicial...</p>
+  if (loading) return <p>Carregando painel inicial...</p>;
 
   // if (loading) return <p>Carregando faturas...</p>
-  if (error || dashboard === null) return <p>{error}</p>
+  if (error || dashboard === null) return <p>{error}</p>;
 
-  return <>
-    <h1>Painel Inicial</h1>
+  return (
+    <>
+      <h1>Painel Inicial</h1>
 
-    <div className='summary-cards'>
-      <SummaryCard label='Total recebido:' value={formatCurrency(dashboard.totals.paid)} />
-      <SummaryCard label='Total pendente:' value={formatCurrency(dashboard.totals.pending)} />
-      <SummaryCard label='Faturas:' value={String(dashboard.totals.invoiceCount)} />
-      <SummaryCard label='Clientes:' value={String(dashboard.totals.customerCount)} />
-    </div>
+      <div className="summary-cards">
+        <SummaryCard
+          label="Total recebido:"
+          value={formatCurrency(dashboard.totals.paid)}
+        />
+        <SummaryCard
+          label="Total pendente:"
+          value={formatCurrency(dashboard.totals.pending)}
+        />
+        <SummaryCard
+          label="Faturas:"
+          value={String(dashboard.totals.invoiceCount)}
+        />
+        <SummaryCard
+          label="Clientes:"
+          value={String(dashboard.totals.customerCount)}
+        />
+      </div>
 
-    <div className='summary-tables'>
-      <InvoiceSummaryTable
-        title='Faturas recentes'
-        dateLabel='Emissão'
-        invoices={dashboard.recentInvoices}
-        date={(invoice) => invoice.issueDate}
-      />
+      <div className="summary-tables">
+        <InvoiceSummaryTable
+          title="Faturas recentes"
+          dateLabel="Emissão"
+          invoices={dashboard.recentInvoices}
+          date={(invoice) => invoice.issueDate}
+        />
 
-      <InvoiceSummaryTable
-        title='Faturas atrasadas'
-        dateLabel='Vencimento'
-        invoices={dashboard.overdueInvoices}
-        date={(invoice) => invoice.dueDate}
-      />
-    </div>
-  </>
+        <InvoiceSummaryTable
+          title="Faturas atrasadas"
+          dateLabel="Vencimento"
+          invoices={dashboard.overdueInvoices}
+          date={(invoice) => invoice.dueDate}
+        />
+      </div>
+    </>
+  );
 }
-
 
 // vite build: cria o processo de building. O navegador nao entende ts. O build gera os arquivos que sao rodados dentro do servidor online
