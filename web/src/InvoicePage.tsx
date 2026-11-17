@@ -7,7 +7,7 @@ import {
   getAllInvoices,
   updateInvoice,
 } from './invoiceApi.ts';
-import InvoiceForm from './invoiceForm.tsx';
+import InvoiceForm from './InvoiceForm.tsx';
 import type {
   Invoice,
   InvoiceFieldErrors,
