@@ -10,7 +10,7 @@ import {
     screen
 } from '@testing-library/react';
 
-import InvoiceForm from './invoiceForm.tsx';
+import InvoiceForm from '../components/invoiceForm.tsx';
 
 import user from '@testing-library/user-event';
 

@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import express from 'express';
-import customers from './customer.route.ts'; // como é default pode nomear o router como quiser
-import dashboard from './dashboard.route.ts'; // como é default pode nomear o router como quiser
-import handleError from './error.middleware.ts';
-import invoicesrouter from './invoice.route.ts';
+import customers from './routes/customer.route.ts'; // como é default pode nomear o router como quiser
+import dashboard from './routes/dashboard.route.ts'; // como é default pode nomear o router como quiser
+import handleError from './middlewares/error.middleware.ts';
+import invoicesrouter from './routes/invoice.route.ts';
 import prisma from './prisma.ts';
 
 const app = express();
@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 
-const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
+const dist = path.join(import.meta.dirname, '..', '..', 'web', 'dist');
 
 app.use((req, _res, next) => {
   // middleware que pega todas as requisições
