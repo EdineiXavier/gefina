@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link 
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Google+Sans:opsz,wght@400;500;600&display=swap" 
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:opsz,wght@400;500;600;700&display=swap" 
     />
     <link 
         rel='stylesheet'
@@ -15,98 +15,10 @@
     <title>Gefina — Faturas</title>
 </head>
 
-<body>
+<body class='bg-background text-text'>
     <div></div>
 
     <script type='module' src="./src/main.tsx"></script>
-    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <script type='text/babel'>
-            const root = document.querySelector('div');
-
-            function App(props) {
-                const invoices = [
-                {
-                    id: 1,
-                    amount: 125000,
-                    status: 'pending',
-                    issueDate: '2026-06-01',
-                    dueDate: '2026-06-15',
-                    customer: { id: 1, name: 'Construtora Meridiano', email: 'contato@meridiano.com.br' },
-                },
-                {
-                    id: 2,
-                    amount: 348000,
-                    status: 'paid',
-                    issueDate: '2026-05-12',
-                    dueDate: '2026-06-11',
-                    customer: { id: 1, name: 'Construtora Meridiano', email: 'contato@meridiano.com.br' },
-                },
-                {
-                    id: 3,
-                    amount: 96500,
-                    status: 'pending',
-                    issueDate: '2026-06-20',
-                    dueDate: '2026-07-20',
-                    customer: { id: 2, name: 'Gráfica Aurora', email: 'contato@graficaaurora.com.br' },
-                },
-            ];
-
-            const translate = {
-                pending: 'Pendente',
-                paid: 'Pago'
-            }
-
-            return <>
-                <table border = "1px">
-                    <thead>
-                        <tr>
-                            <td>Cliente</td>
-                            <td>Valor</td>
-                            <td>Data de Emissão</td>
-                            <td>Data de Vencimento</td>
-                            <td>Situação</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {invoices.map(function(invoice){
-                            return <tr key = {invoice.id}>
-                                <td>{invoice.customer.name}</td>
-                                <td>{invoice.amount.toFixed(2)}</td>
-                                <td>{invoice.issueDate}</td>
-                                <td>{invoice.dueDate}</td>
-                                <td>{translate[invoice.status]}</td>
-                            </tr>;
-                        })}
-                    </tbody>
-                </table>
-            </>
-        }
-
-        ReactDOM.createRoot(root).render(<App/>);
-
-    </script> -->
-
-    <!-- <script>
-        // const tbody = document.querySelector('tbody');
-
-        // for (let i = 0; i < invoices.length; i++) {
-        //     const invoice = invoices[i];
-        //     const row = document.createElement('tr');
-
-        //     row.innerHTML =
-        //         '<td>' + invoice.customer.name + '</td>' +
-        //         '<td>R$ ' + (invoice.amount).toFixed(2) + '</td>' +
-        //         '<td>' + invoice.issueDate + '</td>' +
-        //         '<td>' + invoice.dueDate + '</td>' +
-        //         '<td>' + translate[invoice.status] + '</td>';
-
-        //     tbody.appendChild(row);
-        // }
-
-    </script> -->
 </body>
 
 </html>

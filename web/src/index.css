@@ -1,4 +1,6 @@
-:root {
+@import 'tailwindcss';
+
+@theme {
   --color-background: #0f1117;
   --color-background-backdrop: #0f111799;
   --color-surface: #171a21;
@@ -13,26 +15,14 @@
 
   --font-sans: "Google Sans", system-ui, sans-serif;
 
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-12: 48px;
-
   --radius-control: 6px;
   --radius-surface: 10px;
   --radius-dialog: 14px;
 
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
   --text-lg: 1.25rem;
   --text-xl: 1.5rem;
-
-  --sidebar-width: 240px;
 }
-
+/* 
 * {
   margin: 0;
   padding: 0;
@@ -321,4 +311,4 @@ form {
 .form-error {
   font-size: var(--text-sm);
   color: var(--color-overdue);
-}
+} */
