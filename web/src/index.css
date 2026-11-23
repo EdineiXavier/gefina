@@ -13,7 +13,7 @@
   --color-pending: #d29922;
   --color-overdue: #f85149;
 
-  --font-sans: "Google Sans", system-ui, sans-serif;
+  --font-sans: 'Google Sans', system-ui, sans-serif;
 
   --radius-control: 6px;
   --radius-surface: 10px;

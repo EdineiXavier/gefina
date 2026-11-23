@@ -127,14 +127,17 @@ export default function InvoicePage() {
     setBusy(false);
   }
 
-  if (loading) return <p className='text-sm text-text-muted'>Carregando faturas...</p>;
+  if (loading)
+    return (
+      <p className="text-sm text-text-muted">Carregando faturas...</p>
+    );
 
-  if (error) return <p className='text-overdue'>{error}</p>;
+  if (error) return <p className="text-overdue">{error}</p>;
 
   return (
     <>
       <header className="flex justify-between items-center mb-6">
-        <h1 className='text-xl font-semibold'>Faturas</h1>
+        <h1 className="text-xl font-semibold">Faturas</h1>
         <button
           className="bg-primary px-4 py-2 rounded-control cursor-pointer focus-visible:outline-2 focus-visible:outline-primary"
           type="button"
@@ -144,7 +147,7 @@ export default function InvoicePage() {
         </button>
       </header>
 
-      <div className='p-4 bg-surface border border-border rounded-surface'>
+      <div className="p-4 bg-surface border border-border rounded-surface">
         <InvoiceTable invoices={invoices} edit={openModal} />
       </div>
 
